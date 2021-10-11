@@ -1,25 +1,26 @@
-from list import List
+# Prototype
+# List(*list) : mylist
+# mylist.get(index) : value
+# mylist.set(index, value) : void
+# mylist : [*list]
 
-mylist = List(1,2,3,4)
-print(mylist.get(1))
-mylist.set(2, 10)
-print(mylist.get(2))
-print(mylist.get(-1))
+class List:
+  def __init__(self,*mylist):
+    print('List initialized');
+    self.mylist = [*mylist]
+    self.mylength = len(mylist)
+  def __str__(self):
+    string = ''
+    for value in self.mylist:
+      if value == self.mylist[-1]:
+        string += str(value)
+      else:
+        string += f'{value}, '
+    return f'[{string}]'
+  def get(self,index):
+    return self.mylist[index]
+  def set(self, index, value):
+    self.mylist[index] = value
+  def length(self):
+    return self.mylength
 
-print(mylist)
-print(mylist.length())
-
-# Copying List
-cart = ['notbook', 'pencil']
-
-# Copying
-newCartByDefault = cart[:]
-newCartBySpread = [*cart]
-
-print(hex(id(cart)))
-print(hex(id(newCartByDefault)))
-print(hex(id(newCartBySpread)))
-
-# This is to be avoided
-newCardByPointer = cart
-print(hex(id(newCardByPointer)))
